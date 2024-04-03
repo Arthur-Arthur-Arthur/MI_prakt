@@ -54,7 +54,7 @@ while running:
                         continue
 
                     punkti = generate_points(punktu_sk=punktu_sk)
-                    gameinfo=gametree.GameInfo(punktu_skaits=punktu_sk,sak_dators=True,izmantot_alfa_beta=False)
+                    gameinfo=gametree.GameInfo(punktu_skaits=punktu_sk,sak_dators=True,izmantot_alfa_beta=True)
                     state = gametree.GameState()
                 else:
                     punktu_skaits = event.unicode
