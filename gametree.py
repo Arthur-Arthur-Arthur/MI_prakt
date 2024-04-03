@@ -3,7 +3,7 @@
 class GameInfo:
     def __init__(self, punktu_skaits:int,sak_dators:bool,izmantot_alfa_beta:bool):
         self.punktu_skaits=punktu_skaits
-        self.speles_garums=punktu_skaits/2
+        self.speles_garums=int(punktu_skaits/2)
         self.sak_dators=sak_dators
         self.izmantot_alfa_beta=izmantot_alfa_beta
         return
@@ -65,36 +65,42 @@ def NextMove(current_node:Node,gameinfo:GameInfo,max_depth)->Node:
                 if child_score>value:
                     best_child=child
                     value=child_score
+            print(value)
             return best_child
         else:
             value = 1e16
             for child in children:
-                child_score=MinMax(child, max_depth, False)
+                child_score=MinMax(child, max_depth, True)
                 if child_score<value:
                     best_child=child
                     value=child_score
+            print(value)
+            return best_child
     elif(gameinfo.izmantot_alfa_beta):
         if gameinfo.sak_dators :
             value=-1e16
+            alpha=-1e16
             for child in children:
-                child_score=AlphaBeta(child, max_depth, False)
+                child_score=AlphaBeta(child, max_depth, False,alpha=alpha)
                 if child_score>value:
                     best_child=child
                     value=child_score
+                    alpha=max(alpha,value)
+            print(value)
             return best_child
         else:
             value = 1e16
+            beta=1e16
             for child in children:
-                child_score=AlphaBeta(child, max_depth, False)
+                child_score=AlphaBeta(child, max_depth, True,beta=beta)
                 if child_score<value:
                     best_child=child
                     value=child_score
-    
+                    beta=min(beta,value)
+            print(value)
             return best_child
 
 def MinMax(start_node:Node,depth:int,is_p1): #p1 is always maximizing, easier to remember this way though
-    print(depth)
-
     children=start_node.children()
     if depth == 0 or not children:
         return start_node.score()
@@ -110,7 +116,6 @@ def MinMax(start_node:Node,depth:int,is_p1): #p1 is always maximizing, easier to
         return value
 
 def AlphaBeta(start_node:Node,depth:int,is_p1,alpha=-1e16,beta=1e16): #p1 is always maximizing, easier to remember this way though
-    print(depth)
     children=start_node.children()
     if depth == 0 or not children:
         return start_node.score()
@@ -118,7 +123,7 @@ def AlphaBeta(start_node:Node,depth:int,is_p1,alpha=-1e16,beta=1e16): #p1 is alw
         value=-1e16
         for child in children:
             value = max(value, AlphaBeta(child, depth-1, False,alpha,beta))
-            if value > beta:
+            if value >= beta:
                 break
             alpha=max(alpha,value)
         return value
@@ -126,7 +131,7 @@ def AlphaBeta(start_node:Node,depth:int,is_p1,alpha=-1e16,beta=1e16): #p1 is alw
         value = 1e16
         for child in children:
             value = min(value, AlphaBeta(child, depth-1, True,alpha,beta))
-            if value < alpha:
+            if value <= alpha:
                 break
             beta=min(beta,value)
         return value                  

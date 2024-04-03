@@ -25,7 +25,7 @@ state = None
 selected_point = None
 
 punktu_skaits: str = "Ievadiet lauciņu skaitu 15-25"
-SEARCH_DEPTH=1
+SEARCH_DEPTH=4
 def generate_points(punktu_sk):
     p = []
     for i in range(punktu_sk):
@@ -54,7 +54,7 @@ while running:
                         continue
 
                     punkti = generate_points(punktu_sk=punktu_sk)
-                    gameinfo=gametree.GameInfo(punktu_skaits=punktu_sk,sak_dators=True,izmantot_alfa_beta=True)
+                    gameinfo=gametree.GameInfo(punktu_skaits=punktu_sk,sak_dators=False,izmantot_alfa_beta=True)
                     state = gametree.GameState()
                 else:
                     punktu_skaits = event.unicode
@@ -73,13 +73,20 @@ while running:
                                     selected_point is not None
                                     and selected_point != i
                                 ):
+                                    linija=(min(i,selected_point),max(i,selected_point))
+                                    sods=gametree.points_when_add_line(state.linijas,linija)
+                                    if gajiens%2==0:
+                                        state.p1_punkti+=sods
+                                    else:
+                                        state.p2_punkti+=sods
+                                    state.linijas.append(linija)
                                     
-                                    state.linijas.append((min(i,selected_point),max(i,selected_point)))
+                                    
                                     gajiens+=1
                                     selected_point = None
                                 else:
                                     selected_point = i
-            else:#datora gajiens
+            elif(gajiens<gameinfo.speles_garums):#datora gajiens
                 start_node=gametree.Node(gamestate=state,level=gajiens,gameinfo=gameinfo)
                 next_node=gametree.NextMove(start_node,gameinfo,SEARCH_DEPTH)
                 state=next_node.gamestate
