@@ -23,7 +23,6 @@ punkti = []
 gajiens=0
 selected_point = None
 state = None
-selected_point = None
 
 punktu_skaits: str = "Ievadiet lauciņu skaitu 15-25"
 SEARCH_DEPTH=5
@@ -78,8 +77,6 @@ while running:
                                     selected_point is not None
                                     and selected_point != i 
                                 ):
-                                    
-
                                     linija=(min(i,selected_point),max(i,selected_point))
                                     sods=gametree.points_when_add_line(state.linijas,linija)
                                     if gajiens%2==0:
