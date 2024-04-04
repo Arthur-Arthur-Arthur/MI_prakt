@@ -23,6 +23,7 @@ class Node:
         self.level=level
         self.gameinfo=gameinfo
 
+
     def children(self):
         esosas_linijas=self.gamestate.linijas
         if (not esosas_linijas):
