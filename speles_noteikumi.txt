@@ -1,0 +1,5 @@
+Papildu prasības programmatūrai
+Spēles sākumā cilvēks-spēlētājs uzdod, cik punkti veidos spēles lauciņu. Spēles lauciņš var sevī ietvert no 15 līdz 25 punktiem, un tas tiek saģenerēts pirms spēles sākuma.
+
+Spēles apraksts
+Spēle notiek uz saģenerētā spēles lauciņa. Abiem spēlētājiem ir 0 soda punktu. Punkti, kas veido spēles lauciņu, atrodas vienādā attālumā viens no otra. Katrs spēlētājs pēc kārtas izdara gājienu, savienojot jebkurus divus savā starpā nesavienotus punktus ar taisno līniju. Spēlētājs, kurš, velkot taisno līniju, krusto kādu jau iepriekš uzzīmēto līniju, saņem vienu soda punktu. Spēle beidzas, kad vairs nav iespējams novilkt taisno līniju, jo visi punkti jau ir savienoti. Uzvar tas spēlētājs, kurš saņem vismazāko soda punktu skaitu. Ja soda punktu skaits ir vienāds abiem spēlētājiem, tad rezultāts ir neizšķirts.

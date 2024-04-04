@@ -25,7 +25,7 @@ state = None
 selected_point = None
 
 punktu_skaits: str = "Ievadiet lauciņu skaitu 15-25"
-SEARCH_DEPTH=4
+SEARCH_DEPTH=5
 def generate_points(punktu_sk):
     p = []
     for i in range(punktu_sk):
@@ -49,7 +49,7 @@ while running:
                     punktu_skaits += event.unicode
                     punktu_sk = int(punktu_skaits)
 
-                    if punktu_sk < 6 or punktu_sk > 25:
+                    if punktu_sk < 15 or punktu_sk > 25:
                         punktu_skaits = "Ievadiet lauciņu skaitu 15-25"
                         continue
 
@@ -80,8 +80,6 @@ while running:
                                     else:
                                         state.p2_punkti+=sods
                                     state.linijas.append(linija)
-                                    
-                                    
                                     gajiens+=1
                                     selected_point = None
                                 else:

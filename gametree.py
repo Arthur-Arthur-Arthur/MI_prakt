@@ -22,6 +22,7 @@ class Node:
         self.gamestate=gamestate
         self.level=level
         self.gameinfo=gameinfo
+        self.children_saved=[]
 
     def children(self):
         esosas_linijas=self.gamestate.linijas
@@ -49,6 +50,7 @@ class Node:
                 else:
                     p2_new+=sods
                 new_nodes.append(Node(GameState(jaunas_linijas,p1_new,p2_new),jaunais_limenis,self.gameinfo))
+        self.children_saved=new_nodes
         return new_nodes
                 
     def score(self):
