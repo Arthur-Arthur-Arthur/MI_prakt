@@ -29,7 +29,7 @@ ievadisanas_teksti = ["Ievadiet lauciņu skaitu (15-25)", "Kurš sāks pirmais? 
 ievaditas_veribas = {}
 ievadisanas_teksts = ""
 
-SEARCH_DEPTH=1
+SEARCH_DEPTH=5
 def generate_points(punktu_sk):
     p = []
     for i in range(punktu_sk):
@@ -52,7 +52,7 @@ while running:
 
             elif event.type == pygame.KEYDOWN and (event.key == pygame.K_KP_ENTER or event.key == pygame.K_RETURN):
                 
-                if sobrid_ievada == 0 and int(ievadisanas_teksts) >= 6 and int(ievadisanas_teksts) <= 25:
+                if sobrid_ievada == 0 and int(ievadisanas_teksts) >= 15 and int(ievadisanas_teksts) <= 25:
                     ievaditas_veribas['punktu_sk'] = int(ievadisanas_teksts)
                     sobrid_ievada+=1
                 elif sobrid_ievada == 1 and (int(ievadisanas_teksts) == 1 or int(ievadisanas_teksts) == 2):
